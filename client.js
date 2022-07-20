@@ -9,35 +9,44 @@ function renderCourse(element) {
    let html = `
       <div id="courseList">
          <div id="course-item">
-            <input type="button" value="CS 121" id="cs121">
-            <input type="button" value="CS 186" id="cs186">
-            <input type="button" value="CS 187" id="cs187">
-            <input type="button" value="CS 198C" id="cs198c">
+            <div class="course" id="cs121">CS 121</div>
+            <div class="course" id="cs186">CS 186</div>
+            <div class="course" id="cs187">CS 187</div>
+            <div class="course" id="cs198c">CS 198C</div>
          </div>
          <br>
          <div id="course-item">
-
-            <input type="button" value="CS 220" id="cs220">
-            <input type="button" value="CS 230" id="cs230">
-            <input type="button" value="CS 240" id="cs240">
-            <input type="button" value="CS 250" id="cs250">
+            <div class="course" id="cs220">CS 220</div>
+            <div class="course" id="cs230">CS 230</div>
+            <div class="course" id="cs240">CS 240</div>
+            <div class="course" id="cs250">CS 250</div>
          </div>
          <br>
          <div id="course-item">
-            <input type="button" value="CS 311" id="cs311">
-            <input type="button" value="CS 320" id="cs320">
-            <input type="button" value="CS 325" id="cs325">
-            <input type="button" value="CS 326" id="cs326">
-            <input type="button" value="CS 345" id="cs345">
-            <input type="button" value="CS 383" id="cs383">
+            <div class="course" id="cs311">CS 311</div>
+            <div class="course" id="cs320">CS 320</div>
+            <div class="course" id="cs325">CS 325</div>
+            <div class="course" id="cs326">CS 326</div>
+            <div class="course" id="cs345">CS 345</div>
+            <div class="course" id="cs377">CS 377</div>
+            <div class="course" id="cs383">CS 383</div>
          </div>
       </div>
    `;
    element.innerHTML = html;
 }
 
+function showCourse() {
+   console.log("course");
+}
+
 function main() {
    renderCourse(mainBox);
+   const cs121 = document.getElementById("cs121");
+   cs121.addEventListener(
+      "click",
+      showCourse
+   );
 }
 
 main();
