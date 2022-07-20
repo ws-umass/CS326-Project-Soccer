@@ -1,11 +1,9 @@
 const htmlBody = document.getElementsByTagName("body");
-const surveyBox = document.getElementById("surveyBox");
+const surveyButton = document.getElementById("surveyButton");
 const mainBox = document.getElementById("mainBox");
 
-/**
- * @param {HTMLElement} element 
- */
-function renderCourse(element) {
+function renderCourse() {
+   mainBox.innerHTML = "";
    let html = `
       <div id="courseList">
          <div id="course-item">
@@ -33,7 +31,24 @@ function renderCourse(element) {
          </div>
       </div>
    `;
-   element.innerHTML = html;
+   mainBox.innerHTML = html;
+}
+
+function renderSurvey() {
+   mainBox.innerHTML = "";
+   let html = `
+      <label for="courseTitle">Course:</label>
+      <select name="" id="courseTitle">
+         <option value="none" selected disabled hidden>Select a Course</option>
+   `;
+   const courseList = ["cs121", "cs186", "cs187", "cs198c", "cs220", "cs230", "cs240", "cs250", "cs311", "cs320", "cs325", "cs326", "cs345", "cs377", "cs383"];
+   courseList.forEach(
+      (x) => {
+         html += `<option value="${x}">${x.toUpperCase()}</option>`
+      }
+   );
+   html += "</select>";
+   mainBox.innerHTML = html;
 }
 
 function showCourse() {
@@ -41,12 +56,8 @@ function showCourse() {
 }
 
 function main() {
-   renderCourse(mainBox);
-   const cs121 = document.getElementById("cs121");
-   cs121.addEventListener(
-      "click",
-      showCourse
-   );
+   renderCourse();
+   surveyButton.addEventListener("click", renderSurvey);
 }
 
 main();
