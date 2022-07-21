@@ -1,6 +1,7 @@
 import { Database } from "./database.js";
 import express from "express";
 import logger from "morgan";
+import "dotenv/config";
 
 const app = express();
 const port = process.env.PORT || 3000;
@@ -13,7 +14,7 @@ app.use("/", express.static("client"));
 const headerFields = { "Content-Type": "application/json" };
 const badValue = [undefined, null, "", "none"];
 
-const database = new Database("postgres://dnbsqtdlpvwqip:5bf767244217e22ad5e5ad5f42a8bbc54f27b167262ed8155664e496e43ad661@ec2-34-231-63-30.compute-1.amazonaws.com:5432/dbfmhmc15tmrkg");
+const database = new Database(process.env.DATABASE_URL);
 
 try {
    await database.connect();
