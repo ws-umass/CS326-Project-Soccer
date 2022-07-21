@@ -138,14 +138,36 @@ function renderSurvey() {
 }
 
 function showCourse(course) {
+   const data = courseData[course];
+
    mainBox.innerHTML = "";
-   let html = `
+   let html = `<h2>${course.toUpperCase()}: ${data.title}</h2>`
+
+   html += `
       <div id="courseDiscription">
+         <h3>Description</h3>
          <p>
-            ${courseData[course].description}
+            ${data.description}
          </p>
       </div>
    `;
+
+   html += `
+      <label for="semester">Semester:</label>
+      <select name="" id="semester">
+         <option value="none" selected disabled hidden>Select a Semester</option>
+   `;
+   const semesterList = ["2019fall", "2020spring", "2020summer", "2020fall", "2021spring", "2021summer", "2021fall", "2022spring", "2022summer"];
+   semesterList.forEach((x) => html += `<option value="${x}">${x.toUpperCase()}</option>`);
+   html += "</select><br><br>";
+
+   html += `
+      <label for="professor">Professor:</label>
+      <select name="" id="professor">
+         <option value="none" selected disabled hidden>Select a Professor</option>
+   `;
+   let professorList = [];
+   html += "</select><br><br>";
 
    html += `
       <div id="backpoint">
@@ -155,7 +177,25 @@ function showCourse(course) {
 
    mainBox.innerHTML = html;
 
+   const semester = document.getElementById("semester");
    const backButton = document.getElementById("backButton");
+
+   semester.addEventListener(
+      "change",
+      () => {
+         try {
+            professorList = courseData[course][semester.value];
+         }
+         catch (error) {
+            professorList = [];
+         }
+         let element = document.getElementById("professor");
+         element.innerHTML = `<option value="none" selected disabled hidden>Select a Professor</option>`;
+         if (professorList) {
+            professorList.forEach((x) => element.innerHTML += `<option value="${x}">${x}</option>`);
+         }
+      }
+   );
 
    backButton.addEventListener("click", renderCourse);
 }
