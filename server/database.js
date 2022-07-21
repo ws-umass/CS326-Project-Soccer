@@ -30,10 +30,12 @@ export class Database {
             grade NUMERIC(4, 3)
          );
       `;
+      await this.client.query(queryText);
    }
 
    async dropTable(name) {
       const queryText = `DROP TABLE IF EXISTS ${name};`;
+      await this.client.query(queryText);
    }
 
    async getAvgGrade(course, semester) {
@@ -60,13 +62,13 @@ export class Database {
    }
 
    async writeData(course, semester, professor, evaluation, grade) {
-      await addTable(course);
+      await this.addTable(course);
       const queryText = `
          INSERT INTO ${course} (semester, professor, evaluation, grade)
          VALUES ($1, $2, $3, $4)
          RETURNING *;
       `;
       const res = await this.client.query(queryText, [semester, professor, evaluation, grade]);
-      rconsole.log(res.rows);
+      console.log(res.rows);
    }
 }

@@ -1,6 +1,5 @@
 import { courseData } from "./courses.js";
 
-const htmlBody = document.getElementsByTagName("body");
 const surveyButton = document.getElementById("surveyButton");
 const mainBox = document.getElementById("mainBox");
 
@@ -97,11 +96,13 @@ function renderSurvey() {
    const courseTitle = document.getElementById("courseTitle");
    const semester = document.getElementById("semester");
    const professor = document.getElementById("professor");
+   const evaluation = document.getElementById("rate");
+   const grade = document.getElementById("grade");
    const backButton = document.getElementById("backButton");
    const submitButton = document.getElementById("submitButton");
 
    backButton.addEventListener("click", renderCourse);
-   submitButton.addEventListener("click", () => submitSurvey(professor.value));
+   submitButton.addEventListener("click", () => submitSurvey(courseTitle.value, semester.value, professor.value, evaluation.value, grade.value));
 
    courseTitle.addEventListener(
       "change",
@@ -227,9 +228,30 @@ async function showCourse(course) {
    backButton.addEventListener("click", renderCourse);
 }
 
-function submitSurvey(element) {
-   console.log(element);
-   renderCourse();
+async function submitSurvey(course, semester, professor, evaluation, grade) {
+   if (course === "none" || semester === "none" || professor === "none" || evaluation === "none" || grade === "none") {
+      alert("Please Submit Valid Content!");
+   }
+   else {
+      try {
+         const headerFields = { "Content-Type": "application/json" };
+         let obj = { "course": course, "semester": semester, "professor": professor, "evaluation": evaluation, "grade": grade };
+         const response = await fetch(
+            `/setData`,
+            {
+               method: "POST",
+               body: JSON.stringify(obj),
+               headers: headerFields
+            }
+         );
+         const data = await response.json();
+         renderCourse();
+         return data;
+      }
+      catch (error) {
+         console.log(err);
+      }
+   }
 }
 
 /**
