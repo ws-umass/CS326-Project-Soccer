@@ -154,8 +154,8 @@ async function showCourse(course) {
    `;
 
    html += `
-      <div>
-         <h3>Average Grade</h3>
+      <h3>Average Grade</h3>
+      <div class="canvasBox">
          <canvas id="gradeCanvas"></canvas>
       </div>
    `;
@@ -179,7 +179,7 @@ async function showCourse(course) {
    html += "</select><br><br>";
 
    html += `
-      <div>
+      <div class="canvasBox">
          <canvas id="professorCanvas"></canvas>
       </div>
    `;
