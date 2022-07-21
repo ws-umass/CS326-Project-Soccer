@@ -1,3 +1,5 @@
+import { courseData } from "./courses.js";
+
 const htmlBody = document.getElementsByTagName("body");
 const surveyButton = document.getElementById("surveyButton");
 const mainBox = document.getElementById("mainBox");
@@ -53,7 +55,7 @@ function renderSurvey() {
       <select name="" id="semester">
          <option value="none" selected disabled hidden>Select a Semester</option>
    `;
-   const semesterList = ["2021fall", "2022spring", "2022summer"];
+   const semesterList = ["2019fall", "2020spring", "2020summer", "2020fall", "2021spring", "2021summer", "2021fall", "2022spring", "2022summer"];
    semesterList.forEach((x) => html += `<option value="${x}">${x.toUpperCase()}</option>`);
    html += "</select><br><br>";
 
@@ -62,8 +64,7 @@ function renderSurvey() {
       <select name="" id="professor">
          <option value="none" selected disabled hidden>Select a Professor</option>
    `;
-   const professorList = ["professor1", "professor2", "professor3"];
-   professorList.forEach((x) => html += `<option value="${x}">${x}</option>`);
+   let professorList = [];
    html += "</select><br><br>";
 
    html += `
@@ -80,7 +81,7 @@ function renderSurvey() {
       <select name="" id="grade">
          <option value="none" selected disabled hidden>Select your Grade</option>
    `;
-   const gradeList = ["A=4", "A-=3.7", "B+=3.3", "B=3", "B-=2.7", "C+=2.3","C=2", "C-=1.7", "D+=1.3", "D=1", "F=0"];
+   const gradeList = ["A=4", "A-=3.7", "B+=3.3", "B=3", "B-=2.7", "C+=2.3", "C=2", "C-=1.7", "D+=1.3", "D=1", "F=0"];
    gradeList.forEach((x) => html += `<option value="${x.split("=")[1]}">${x.split("=")[0]}</option>`);
    html += "</select><br><br>";
 
@@ -93,11 +94,47 @@ function renderSurvey() {
 
    mainBox.innerHTML = html;
 
+   const courseTitle = document.getElementById("courseTitle");
+   const semester = document.getElementById("semester");
    const backButton = document.getElementById("backButton");
    const submitButton = document.getElementById("submitButton");
 
    backButton.addEventListener("click", renderCourse);
    submitButton.addEventListener("click", submitSurvey);
+
+   courseTitle.addEventListener(
+      "change",
+      () => {
+         try {
+            professorList = courseData[courseTitle.value][semester.value];
+         }
+         catch (error) {
+            professorList = [];
+         }
+         let element = document.getElementById("professor");
+         element.innerHTML = `<option value="none" selected disabled hidden>Select a Professor</option>`;
+         if (professorList) {
+            professorList.forEach((x) => element.innerHTML += `<option value="${x}">${x}</option>`);
+         }
+      }
+   );
+
+   semester.addEventListener(
+      "change",
+      () => {
+         try {
+            professorList = courseData[courseTitle.value][semester.value];
+         }
+         catch (error) {
+            professorList = [];
+         }
+         let element = document.getElementById("professor");
+         element.innerHTML = `<option value="none" selected disabled hidden>Select a Professor</option>`;
+         if (professorList) {
+            professorList.forEach((x) => element.innerHTML += `<option value="${x}">${x}</option>`);
+         }
+      }
+   );
 }
 
 function showCourse(course) {
