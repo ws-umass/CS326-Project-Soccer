@@ -13,3 +13,7 @@ The user interface and data interaction have not changed significantly from the 
 Whenever the user clicks the corresponding course title on the main interface, first extract all the data of the course from the database, calculate the average grade through `AVG()` and take out `MIN()` and `MAX()`. Display the average grade through a line graph. In this way, users can clearly understand the average score trend of this course. By showing the highest and lowest scores, you can see how difficult the course is for all students. Similarly, the evaluation trend of professors can allow students to understand the changes in professor evaluations. The drop and rise of a professor's rating can also affect a student's choice of a course.
 
 All records will be anonymous, so no student's name will be recorded in the database. As long as the user clicks on the corresponding course, all the data will be called from the database, so the data can be guaranteed to be updated in real time.
+
+# HTML Page
+
+![HTML Page](./HTML.png)
