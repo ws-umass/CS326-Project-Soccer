@@ -17,3 +17,13 @@ All records will be anonymous, so no student's name will be recorded in the data
 # HTML Page
 
 ![HTML Page](./HTML.png)
+
+The HTML page is divided into two main parts. At the top is a `Survey` button. Clicking this button will clear the entire page and fill the content of the survey into the page.
+
+![Survey Page](./Survey.png)
+
+Note that this is not a brand new page, but the same HTML page as the previous page, and all UI changes are done through DOM manipulation. When we click the `Back` button or the `Submit` button, we can return to the main interface.
+
+The second part is the button of each course, click the course button, the user can enter the description page of the course, and the user can quickly see the trend of the grade. Similarly, it is also done through the DOM. All the interfaces seen here are in the same HTML file.
+
+![Course Page](./Course.png)

@@ -180,7 +180,7 @@ async function showCourse(course) {
 
    html += `
       <div>
-         <canvas id="gprofessorCanvas"></canvas>
+         <canvas id="professorCanvas"></canvas>
       </div>
    `;
 
@@ -193,12 +193,12 @@ async function showCourse(course) {
    mainBox.innerHTML = html;
 
    const gc = document.getElementById("gradeCanvas");
-   const pc = document.getElementById("gprofessorCanvas");
+   const pc = document.getElementById("professorCanvas");
    const semester = document.getElementById("semester");
    const professor = document.getElementById("professor");
    const backButton = document.getElementById("backButton");
 
-   await drawGradeLine([3.5, 3.7, 4, 3.2, 0, 3.6, 3.2, 3.1, 3.3], gc);
+   await drawGradeLine([3.5, 3.7, 3.5, 3.2, 3.1, 3.6, 3.2, 3.1, 3.3], gc);
 
    semester.addEventListener(
       "change",
@@ -220,7 +220,7 @@ async function showCourse(course) {
    professor.addEventListener(
       "change",
       async () => {
-         await drawProfessorLine([4.5, 4.7, 5, 4.2, 3.4, 1, 4.2, 4.1, 3.3], pc);
+         await drawProfessorLine([4.5, 4.7, 5, 4.2, 3.4, 4.1, 4.2, 4.1, 3.3], pc);
       }
    );
 
