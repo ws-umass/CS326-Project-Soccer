@@ -32,6 +32,9 @@ function renderCourse() {
       </div>
    `;
    mainBox.innerHTML = html;
+
+   const courseList = ["cs121", "cs186", "cs187", "cs198c", "cs220", "cs230", "cs240", "cs250", "cs311", "cs320", "cs325", "cs326", "cs345", "cs377", "cs383"];
+   courseList.forEach((x) => document.getElementById(x).addEventListener("click", showCourse, x));
 }
 
 function renderSurvey() {
@@ -60,7 +63,7 @@ function renderSurvey() {
          <option value="none" selected disabled hidden>Select a Professor</option>
    `;
    const professorList = ["professor1", "professor2", "professor3"];
-   professorList.forEach((x) => html += `<option value="${x}">${x.toUpperCase()}</option>`);
+   professorList.forEach((x) => html += `<option value="${x}">${x}</option>`);
    html += "</select><br><br>";
 
    html += `
@@ -79,12 +82,31 @@ function renderSurvey() {
    `;
    const gradeList = ["A=4", "A-=3.7", "B+=3.3", "B=3", "B-=2.7", "C+=2.3","C=2", "C-=1.7", "D+=1.3", "D=1", "F=0"];
    gradeList.forEach((x) => html += `<option value="${x.split("=")[1]}">${x.split("=")[0]}</option>`);
-   html += "</select>";
+   html += "</select><br><br>";
+
+   html += `
+      <div id="backpoint">
+         <div id="backButton">Back</div>
+         <div id="submitButton">Submit</div>
+      </div>
+   `;
+
    mainBox.innerHTML = html;
+
+   const backButton = document.getElementById("backButton");
+   const submitButton = document.getElementById("submitButton");
+
+   backButton.addEventListener("click", renderCourse);
+   submitButton.addEventListener("click", submitSurvey);
 }
 
-function showCourse() {
+function showCourse(course) {
    console.log("course");
+}
+
+function submitSurvey() {
+   console.log("submit");
+   renderCourse();
 }
 
 function main() {

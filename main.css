@@ -11,6 +11,7 @@ body {
 
 h1 {
    padding: 20px;
+   text-align: center;
    color: #090b77;
    background-color: #6e7cff;
    border: 1px solid #6e7cff;
@@ -34,7 +35,7 @@ h1 {
    font-family: 'Itim', cursive;
 }
 
-.course:hover {
+.course:hover, #submitButton:hover {
    color: #770909;
    background-color: #fbc7d4;
    border: 1px solid #fbc7d4;
@@ -72,8 +73,44 @@ h1 {
    font-family: 'Itim', cursive;
 }
 
-#surveyButton:hover {
+#surveyButton:hover, #backButton:hover {
    color: #9065b0;
    background-color: #e2ccee;
    border: 1px solid #e2ccee;
+}
+
+#backpoint {
+   display: flex;
+   align-items: center;
+   justify-content: center;
+}
+
+#backButton {
+   flex-grow: 1;
+   margin: 10px;
+   padding: 10px;
+   cursor: pointer;
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   color: #df7012;
+   background-color: #fdecc8;
+   border: 1px solid #fdecc8;
+   border-radius: 10px;
+   font-family: 'Itim', cursive;
+}
+
+#submitButton {
+   flex-grow: 1;
+   margin: 10px;
+   padding: 10px;
+   cursor: pointer;
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   color: #228676;
+   background-color: #96f0f0;
+   border: 1px solid #96f0f0;
+   border-radius: 10px;
+   font-family: 'Itim', cursive;
 }
