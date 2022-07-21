@@ -41,9 +41,15 @@ h1 {
    border: 1px solid #fbc7d4;
 }
 
-canvas {
+#gradeCanvas {
    background-color: #96f0f0;
    border: 1px solid #96f0f0;
+   border-radius: 10px;
+}
+
+#gprofessorCanvas {
+   background-color: #fbc7d4;
+   border: 1px solid #fbc7d4;
    border-radius: 10px;
 }
 

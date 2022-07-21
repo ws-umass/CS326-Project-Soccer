@@ -179,6 +179,12 @@ async function showCourse(course) {
    html += "</select><br><br>";
 
    html += `
+      <div>
+         <canvas id="gprofessorCanvas"></canvas>
+      </div>
+   `;
+
+   html += `
       <div id="backpoint">
          <div id="backButton">Back</div>
       </div>
@@ -187,10 +193,12 @@ async function showCourse(course) {
    mainBox.innerHTML = html;
 
    const gc = document.getElementById("gradeCanvas");
+   const pc = document.getElementById("gprofessorCanvas");
    const semester = document.getElementById("semester");
+   const professor = document.getElementById("professor");
    const backButton = document.getElementById("backButton");
 
-   await drawLine([3.5, 3.7, 3.3, 3.2, 3.4, 3.6, 3.2, 3.1, 3.3], gc);
+   await drawGradeLine([3.5, 3.7, 4, 3.2, 0, 3.6, 3.2, 3.1, 3.3], gc);
 
    semester.addEventListener(
       "change",
@@ -209,6 +217,13 @@ async function showCourse(course) {
       }
    );
 
+   professor.addEventListener(
+      "change",
+      async () => {
+         await drawProfessorLine([4.5, 4.7, 5, 4.2, 3.4, 1, 4.2, 4.1, 3.3], pc);
+      }
+   );
+
    backButton.addEventListener("click", renderCourse);
 }
 
@@ -221,10 +236,7 @@ function submitSurvey(element) {
  * @param {number[]} data 
  * @param {HTMLCanvasElement} canvas 
  */
-async function drawLine(data, canvas) {
-   const maximum = Math.max(...data);
-   const minimum = Math.min(...data);
-
+async function drawGradeLine(data, canvas) {
    const ctx = canvas.getContext("2d");
    ctx.font = "12px Arial";
    ctx.lineWidth = 2;
@@ -232,6 +244,27 @@ async function drawLine(data, canvas) {
    data.forEach(
       (x, i) => {
          let lasty = canvas.height - Math.floor((x / 5) * canvas.height) - 25;
+         let lastx = (Math.floor(canvas.width / data.length) * i) + 15;
+         i === 0 && ctx.moveTo(lastx, lasty);
+         ctx.lineTo(lastx, lasty);
+         ctx.fillText(x, lastx - 10, lasty + 20);
+         ctx.stroke();
+      }
+   );
+}
+
+/**
+ * @param {number[]} data 
+ * @param {HTMLCanvasElement} canvas 
+ */
+async function drawProfessorLine(data, canvas) {
+   const ctx = canvas.getContext("2d");
+   ctx.font = "12px Arial";
+   ctx.lineWidth = 2;
+   ctx.beginPath();
+   data.forEach(
+      (x, i) => {
+         let lasty = canvas.height - Math.floor(((x - 1) / 5) * canvas.height) - 25;
          let lastx = (Math.floor(canvas.width / data.length) * i) + 15;
          i === 0 && ctx.moveTo(lastx, lasty);
          ctx.lineTo(lastx, lasty);
