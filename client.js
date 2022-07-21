@@ -42,11 +42,43 @@ function renderSurvey() {
          <option value="none" selected disabled hidden>Select a Course</option>
    `;
    const courseList = ["cs121", "cs186", "cs187", "cs198c", "cs220", "cs230", "cs240", "cs250", "cs311", "cs320", "cs325", "cs326", "cs345", "cs377", "cs383"];
-   courseList.forEach(
-      (x) => {
-         html += `<option value="${x}">${x.toUpperCase()}</option>`
-      }
-   );
+   courseList.forEach((x) => html += `<option value="${x}">${x.toUpperCase()}</option>`);
+   html += "</select><br><br>";
+
+   html += `
+      <label for="semester">Semester:</label>
+      <select name="" id="semester">
+         <option value="none" selected disabled hidden>Select a Semester</option>
+   `;
+   const semesterList = ["2021fall", "2022spring", "2022summer"];
+   semesterList.forEach((x) => html += `<option value="${x}">${x.toUpperCase()}</option>`);
+   html += "</select><br><br>";
+
+   html += `
+      <label for="professor">Professor:</label>
+      <select name="" id="professor">
+         <option value="none" selected disabled hidden>Select a Professor</option>
+   `;
+   const professorList = ["professor1", "professor2", "professor3"];
+   professorList.forEach((x) => html += `<option value="${x}">${x.toUpperCase()}</option>`);
+   html += "</select><br><br>";
+
+   html += `
+      <label for="rate">Evaluation:</label>
+      <select name="" id="rate">
+         <option value="none" selected disabled hidden>Evaluate your Professor</option>
+   `;
+   const rateList = ["1(Poor)", "2(Fair)", "3(Good)", "4(Very Good)", "5(Excellent)"];
+   rateList.forEach((x) => html += `<option value="${x[0]}">${x}</option>`);
+   html += "</select><br><br>";
+
+   html += `
+      <label for="grade">Grade:</label>
+      <select name="" id="grade">
+         <option value="none" selected disabled hidden>Select your Grade</option>
+   `;
+   const gradeList = ["A=4", "A-=3.7", "B+=3.3", "B=3", "B-=2.7", "C+=2.3","C=2", "C-=1.7", "D+=1.3", "D=1", "F=0"];
+   gradeList.forEach((x) => html += `<option value="${x.split("=")[1]}">${x.split("=")[0]}</option>`);
    html += "</select>";
    mainBox.innerHTML = html;
 }
