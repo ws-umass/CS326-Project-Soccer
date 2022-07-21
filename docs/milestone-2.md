@@ -27,3 +27,9 @@ Note that this is not a brand new page, but the same HTML page as the previous p
 The second part is the button of each course, click the course button, the user can enter the description page of the course, and the user can quickly see the trend of the grade. Similarly, it is also done through the DOM. All the interfaces seen here are in the same HTML file.
 
 ![Course Page](./Course.png)
+
+# Video
+
+[Video](./video.mp4)
+
+Video link: https://raw.githubusercontent.com/ws-umass/CS326-Project-Soccer/main/docs/video.mp4
