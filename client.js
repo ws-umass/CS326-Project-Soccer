@@ -36,7 +36,7 @@ function renderCourse() {
    mainBox.innerHTML = html;
 
    const courseList = ["cs121", "cs186", "cs187", "cs198c", "cs220", "cs230", "cs240", "cs250", "cs311", "cs320", "cs325", "cs326", "cs345", "cs377", "cs383"];
-   courseList.forEach((x) => document.getElementById(x).addEventListener("click", showCourse, x));
+   courseList.forEach((x) => document.getElementById(x).addEventListener("click", () => showCourse(x)));
 }
 
 function renderSurvey() {
@@ -138,7 +138,26 @@ function renderSurvey() {
 }
 
 function showCourse(course) {
-   console.log("course");
+   mainBox.innerHTML = "";
+   let html = `
+      <div id="courseDiscription">
+         <p>
+            ${courseData[course].description}
+         </p>
+      </div>
+   `;
+
+   html += `
+      <div id="backpoint">
+         <div id="backButton">Back</div>
+      </div>
+   `;
+
+   mainBox.innerHTML = html;
+
+   const backButton = document.getElementById("backButton");
+
+   backButton.addEventListener("click", renderCourse);
 }
 
 function submitSurvey() {

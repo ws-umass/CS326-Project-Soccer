@@ -1,6 +1,6 @@
 const courseData = {
    "cs121": {
-      "discription": "An introductory course in problem solving, using the programming language Java. Focuses on the fundamental concepts of problem solving and on computer implementation. Intended for computer science majors or those applying for the major. Satisfactory completion is a prerequisite for all higher-level computer science courses. Use of a laptop computer required.",
+      "description": "An introductory course in problem solving, using the programming language Java. Focuses on the fundamental concepts of problem solving and on computer implementation. Intended for computer science majors or those applying for the major. Satisfactory completion is a prerequisite for all higher-level computer science courses. Use of a laptop computer required.",
       "credits": 4,
       "2019fall": ["Tom", "Jack", "Lily"],
       "2020spring": ["Henry", "Mark", "John"],
@@ -13,7 +13,7 @@ const courseData = {
       "2022summer": ["Tom", "Jack", "Lily"]
    },
    "cs186": {
-      "discription": "This course introduces foundational abstract data types and algorithms. The main focus is on the use of data structures in designing and developing programs to solve problems in a variety of domains. Specific topics include lists, sets, maps, graphs, stacks, queues, searching, and sorting.",
+      "description": "This course introduces foundational abstract data types and algorithms. The main focus is on the use of data structures in designing and developing programs to solve problems in a variety of domains. Specific topics include lists, sets, maps, graphs, stacks, queues, searching, and sorting.",
       "credits": 4,
       "2019fall": ["Tom", "Henry", "Mark"],
       "2020spring": ["John", "Mark", "Lily"],
@@ -125,16 +125,16 @@ const courseData = {
       "2020fall": ["John", "Jack", "David"],
       "2021spring": ["Tom", "John", "Lily"],
       "2021summer": ["David", "Jack", "Lily"],
-      "2021fall": ["John", "John", "Lily"],
+      "2021fall": ["Jack", "John", "Lily"],
       "2022spring": ["Tom", "Henry", "John"],
       "2022summer": ["Tom", "Jack", "Lily"]
    },
    "cs325": {
       "description": "In this course we examine the important problems in Usability, Human Computer Interaction, User Interfaces, and Human Centered Computing. We will examine elements of HCI history, human information processing capabilities, HCI design, user interface prototyping methods and new applications and directions in human computer interaction.",
       "credits": 3,
-      "2019fall": ["Tom", "Jack", "Lily"],
+      "2019fall": ["Tom", "John", "Lily"],
       "2020spring": ["David", "Jack", "Henry"],
-      "2020summer": ["David", "Jack", "Lily"],
+      "2020summer": ["David", "John", "Lily"],
       "2020fall": ["John", "Jack", "Lily"],
       "2021spring": ["Tom", "Jack", "Lily"],
       "2021summer": ["Tom", "John", "Lily"],
@@ -145,15 +145,15 @@ const courseData = {
    "cs326": {
       "description": "The World Wide Web was proposed originally as a collection of static documents inter-connected by hyperlinks. Today, the web has grown into a rich platform, built on a variety of protocols, standards, and programming languages, that aims to replace many of the services traditionally provided by a desktop operating system. This course will study core technologies, concepts, and techniques behind the creation of modern web-based systems and applications.",
       "credits": 4,
-      "2019fall": ["Tom", "Jack", "Lily"],
-      "2020spring": ["Tom", "Jack", "Lily"],
-      "2020summer": ["Tom", "Jack", "David"],
-      "2020fall": ["Tom", "Jack", "Lily"],
-      "2021spring": ["Tom", "Jack", "Lily"],
+      "2019fall": ["Tom", "Jack", "John"],
+      "2020spring": ["Henry", "Jack", "Lily"],
+      "2020summer": ["Henry", "John", "David"],
+      "2020fall": ["Tom", "John", "Lily"],
+      "2021spring": ["Henry", "John", "Lily"],
       "2021summer": ["Tom", "Jack", "David"],
       "2021fall": ["Tom", "Jack", "David"],
-      "2022spring": ["Tom", "Jack", "David"],
-      "2022summer": ["Tom", "Jack", "Lily"]
+      "2022spring": ["Henry", "John", "David"],
+      "2022summer": ["John", "Jack", "Lily"]
    },
    "cs345": {
       "description": "Computing has become data-driven, and databases are now at the heart of commercial applications. The purpose of this course is to provide a comprehensive introduction to the use of data management systems within the context of various applications. Some of the covered topics include application-driven database design, schema refinement, implementation of basic transactions, data on the web, and data visualization.",
@@ -172,12 +172,12 @@ const courseData = {
       "description": "The design and operation of modern computer operating systems. Review of capabilities of typical computer hardware. Topics include command language interpreter (the shell), processes, concurrency, inter-process communication, linking and loading, memory management, transactions, file systems, distributed systems, security, and protection. Programming projects in Java and C.",
       "credits": 4,
       "2019fall": ["Tom", "Jack", "Lily"],
-      "2020spring": ["Tom", "Jack", "Lily"],
-      "2020summer": ["Tom", "Jack", "Lily"],
+      "2020spring": ["Tom", "Jack", "Henry"],
+      "2020summer": ["John", "Jack", "Henry"],
       "2020fall": ["Tom", "Jack", "Lily"],
-      "2021spring": ["Tom", "Jack", "David"],
-      "2021summer": ["Tom", "Jack", "David"],
-      "2021fall": ["Tom", "Jack", "David"],
+      "2021spring": ["John", "Jack", "Henry"],
+      "2021summer": ["John", "Jack", "David"],
+      "2021fall": ["John", "Henry", "David"],
       "2022spring": ["Tom", "Jack", "David"],
       "2022summer": ["Tom", "Jack", "Lily"]
    },
