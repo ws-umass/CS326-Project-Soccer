@@ -41,6 +41,12 @@ h1 {
    border: 1px solid #fbc7d4;
 }
 
+canvas {
+   background-color: #96f0f0;
+   border: 1px solid #96f0f0;
+   border-radius: 10px;
+}
+
 #surveyBox {
    margin: 10px;
 }

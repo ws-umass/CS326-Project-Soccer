@@ -96,11 +96,12 @@ function renderSurvey() {
 
    const courseTitle = document.getElementById("courseTitle");
    const semester = document.getElementById("semester");
+   const professor = document.getElementById("professor");
    const backButton = document.getElementById("backButton");
    const submitButton = document.getElementById("submitButton");
 
    backButton.addEventListener("click", renderCourse);
-   submitButton.addEventListener("click", submitSurvey);
+   submitButton.addEventListener("click", () => submitSurvey(professor.value));
 
    courseTitle.addEventListener(
       "change",
@@ -137,7 +138,7 @@ function renderSurvey() {
    );
 }
 
-function showCourse(course) {
+async function showCourse(course) {
    const data = courseData[course];
 
    mainBox.innerHTML = "";
@@ -153,6 +154,14 @@ function showCourse(course) {
    `;
 
    html += `
+      <div>
+         <h3>Average Grade</h3>
+         <canvas id="gradeCanvas"></canvas>
+      </div>
+   `;
+
+   html += `
+      <h3>Professor Evaluation</h3>
       <label for="semester">Semester:</label>
       <select name="" id="semester">
          <option value="none" selected disabled hidden>Select a Semester</option>
@@ -177,8 +186,11 @@ function showCourse(course) {
 
    mainBox.innerHTML = html;
 
+   const gc = document.getElementById("gradeCanvas");
    const semester = document.getElementById("semester");
    const backButton = document.getElementById("backButton");
+
+   await drawLine([3.5, 3.7, 3.3, 3.2, 3.4, 3.6, 3.2, 3.1, 3.3], gc);
 
    semester.addEventListener(
       "change",
@@ -200,9 +212,33 @@ function showCourse(course) {
    backButton.addEventListener("click", renderCourse);
 }
 
-function submitSurvey() {
-   console.log("submit");
+function submitSurvey(element) {
+   console.log(element);
    renderCourse();
+}
+
+/**
+ * @param {number[]} data 
+ * @param {HTMLCanvasElement} canvas 
+ */
+async function drawLine(data, canvas) {
+   const maximum = Math.max(...data);
+   const minimum = Math.min(...data);
+
+   const ctx = canvas.getContext("2d");
+   ctx.font = "12px Arial";
+   ctx.lineWidth = 2;
+   ctx.beginPath();
+   data.forEach(
+      (x, i) => {
+         let lasty = canvas.height - Math.floor((x / 5) * canvas.height) - 25;
+         let lastx = (Math.floor(canvas.width / data.length) * i) + 15;
+         i === 0 && ctx.moveTo(lastx, lasty);
+         ctx.lineTo(lastx, lasty);
+         ctx.fillText(x, lastx - 10, lasty + 20);
+         ctx.stroke();
+      }
+   );
 }
 
 function main() {
