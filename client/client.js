@@ -199,7 +199,8 @@ async function showCourse(course) {
    const professor = document.getElementById("professor");
    const backButton = document.getElementById("backButton");
 
-   await drawGradeLine([3.5, 3.7, 3.5, 3.2, 3.1, 3.6, 3.2, 3.1, 3.3], gc);
+   let gradeArr = await Promise.all(semesterList.map(async (x) => await getAvgGrade(course, x)));
+   await drawGradeLine(gradeArr.filter((x) => x !== null).map((x) => Math.round(x * 100) / 100), gc);
 
    semester.addEventListener(
       "change",
@@ -251,6 +252,19 @@ async function submitSurvey(course, semester, professor, evaluation, grade) {
       catch (error) {
          console.log(err);
       }
+   }
+}
+
+async function getAvgGrade(course, semester) {
+   try {
+      const headerFields = { "Content-Type": "application/json" };
+      let obj = { "course": course, "semester": semester };
+      const response = await fetch(`/avgGrade?course=${course}&semester=${semester}`, { method: "GET" });
+      const data = await response.json();
+      return data.avg;
+   }
+   catch (error) {
+      console.log(err);
    }
 }
 

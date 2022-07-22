@@ -43,11 +43,29 @@ async function postData(response, course, semester, professor, evaluation, grade
    }
 }
 
+/**
+ * @param {http.ServerResponse} response 
+ */
+async function getGrade(response, course, semester) {
+   let storage = await database.getAvgGrade(course, semester);
+   response.writeHead(200, headerFields);
+   response.write(JSON.stringify(storage));
+   response.end();
+}
+
 app.post(
    "/setData",
    async (request, response) => {
       const options = request.body;
       await postData(response, options.course, options.semester, options.professor, options.evaluation, options.grade);
+   }
+);
+
+app.get(
+   "/avgGrade",
+   async (request, response) => {
+      const options = request.query;
+      await getGrade(response, options.course, options.semester);
    }
 );
 

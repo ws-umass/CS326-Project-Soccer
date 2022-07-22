@@ -39,23 +39,19 @@ export class Database {
    }
 
    async getAvgGrade(course, semester) {
-      const queryText = `
-         SELECT AVG(grade) FROM (
-            SELECT * FROM ${course}
-            WHERE semester = ${semester};
-         );
-      `;
+      const queryText = `SELECT AVG(grade) FROM ${course} WHERE semester = '${semester}';`;
       const res = await this.client.query(queryText);
-      return JSON.parse(res.rows);
+      return res.rows[0];
    }
 
    async getAvgEvaluation(course, semester, professor) {
       const queryText = `
-         SELECT AVG(evaluation) FROM (
+         SELECT AVG(evaluation)
+         FROM (
             SELECT * FROM ${course}
             WHERE semester = ${semester}
-            AND professor = ${professor};
-         );
+            AND professor = ${professor}
+         ) AS a;
       `;
       const res = await this.client.query(queryText);
       return JSON.parse(res.rows);
