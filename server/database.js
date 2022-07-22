@@ -45,16 +45,9 @@ export class Database {
    }
 
    async getAvgEvaluation(course, semester, professor) {
-      const queryText = `
-         SELECT AVG(evaluation)
-         FROM (
-            SELECT * FROM ${course}
-            WHERE semester = ${semester}
-            AND professor = ${professor}
-         ) AS a;
-      `;
+      const queryText = `SELECT AVG(evaluation) FROM ${course} WHERE semester = '${semester}' AND professor = '${professor}';`;
       const res = await this.client.query(queryText);
-      return JSON.parse(res.rows);
+      return res.rows[0];
    }
 
    async writeData(course, semester, professor, evaluation, grade) {

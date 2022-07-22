@@ -53,6 +53,16 @@ async function getGrade(response, course, semester) {
    response.end();
 }
 
+/**
+ * @param {http.ServerResponse} response 
+ */
+async function getEvaluation(response, course, semester, professor) {
+   let storage = await database.getAvgEvaluation(course, semester, professor);
+   response.writeHead(200, headerFields);
+   response.write(JSON.stringify(storage));
+   response.end();
+}
+
 app.post(
    "/setData",
    async (request, response) => {
@@ -66,6 +76,14 @@ app.get(
    async (request, response) => {
       const options = request.query;
       await getGrade(response, options.course, options.semester);
+   }
+);
+
+app.get(
+   "/avgEvaluation",
+   async (request, response) => {
+      const options = request.query;
+      await getEvaluation(response, options.course, options.semester, options.professor);
    }
 );
 

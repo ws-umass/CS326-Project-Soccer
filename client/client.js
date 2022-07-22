@@ -222,7 +222,8 @@ async function showCourse(course) {
    professor.addEventListener(
       "change",
       async () => {
-         await drawProfessorLine([4.5, 4.7, 5, 4.2, 3.4, 4.1, 4.2, 4.1, 3.3], pc);
+         let professorArr = await Promise.all(semesterList.map(async (x) => await getAvgEvaluation(course, x, professor.value)));
+         await drawProfessorLine(professorArr.filter((x) => x !== null).map((x) => Math.round(x * 100) / 100), pc);
       }
    );
 
@@ -268,12 +269,26 @@ async function getAvgGrade(course, semester) {
    }
 }
 
+async function getAvgEvaluation(course, semester, professor) {
+   try {
+      const headerFields = { "Content-Type": "application/json" };
+      let obj = { "course": course, "semester": semester };
+      const response = await fetch(`/avgEvaluation?course=${course}&semester=${semester}&professor=${professor}`, { method: "GET" });
+      const data = await response.json();
+      return data.avg;
+   }
+   catch (error) {
+      console.log(err);
+   }
+}
+
 /**
  * @param {number[]} data 
  * @param {HTMLCanvasElement} canvas 
  */
 async function drawGradeLine(data, canvas) {
    const ctx = canvas.getContext("2d");
+   ctx.clearRect(0, 0, canvas.width, canvas.height);
    ctx.font = "12px Arial";
    ctx.lineWidth = 2;
    ctx.beginPath();
@@ -295,6 +310,7 @@ async function drawGradeLine(data, canvas) {
  */
 async function drawProfessorLine(data, canvas) {
    const ctx = canvas.getContext("2d");
+   ctx.clearRect(0, 0, canvas.width, canvas.height);
    ctx.font = "12px Arial";
    ctx.lineWidth = 2;
    ctx.beginPath();
