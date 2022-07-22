@@ -3,12 +3,18 @@ import { users } from "./users.js";
 
 import auth from "./auth.js";
 
+import { fileURLToPath } from "url";
+import { dirname } from "path";
 import * as http from "http";
 import express from "express";
 import expressSession from "express-session";
 import logger from "morgan";
 
 import "dotenv/config";
+
+// We will use __dirname later on to send files back to the client.
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(dirname(__filename));
 
 const app = express();
 const port = process.env.PORT || 3000;
@@ -102,7 +108,6 @@ app.post(
    }
 );
 
-// get
 app.get(
    "/avgGrade",
    async (request, response) => {
@@ -111,7 +116,6 @@ app.get(
    }
 );
 
-// get
 app.get(
    "/avgEvaluation",
    async (request, response) => {
@@ -120,11 +124,67 @@ app.get(
    }
 );
 
+app.post("/", (request, response) => response.redirect("/"));
+
+app.get("/", (request, response) => { response.sendFile("client/index.html", { root: __dirname }) });
+
+app.get("/login", (request, response) => { response.sendFile("client/login.html", { root: __dirname }) });
+
+app.post(
+   "/login",
+   auth.authenticate(
+      "local",
+      {
+         // use username/password authentication
+         successRedirect: "/private", // when we login, go to /private
+         failureRedirect: "/login", // otherwise, back to login
+      }
+   )
+);
+
+app.post("/logout", (request, response) => response.redirect("/logout"));
+
 app.get(
-   "/",
+   "/logout",
+   (request, response) => {
+      request.logout(); // Logs us out!
+      response.redirect("/"); // back to login
+   }
+);
+
+app.post(
+   "/register",
+   (request, response) => {
+      const { username, password } = request.body;
+      if (users.addUser(username, password)) {
+         response.redirect("/login");
+      }
+      else {
+         response.redirect("/register");
+      }
+   }
+);
+
+app.get("/register", (request, response) => { response.sendFile("client/register.html", { root: __dirname }) });
+
+app.get(
+   "/private",
    checkLoggedIn,
    (request, response) => {
-      response.send({ "status": "success" });
+      response.redirect("/private/" + request.user);
+   }
+);
+
+app.get(
+   "/private/:userID/",
+   checkLoggedIn,
+   (request, response) => {
+      if (request.params.userID === request.user) {
+         response.sendFile("client/private.html", { root: __dirname });
+      }
+      else {
+         response.redirect("/private");
+      }
    }
 );
 

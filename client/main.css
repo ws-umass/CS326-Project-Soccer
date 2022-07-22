@@ -79,7 +79,15 @@ h1 {
    flex-wrap: wrap;
 }
 
-#surveyButton {
+#signBox {
+   display: flex;
+}
+
+#inButton, #upButton, #outButton {
+   font-size: large;
+}
+
+#surveyButton, #inButton, #upButton, #outButton {
    margin: 10px;
    padding: 10px;
    cursor: pointer;
@@ -90,10 +98,11 @@ h1 {
    background-color: #fdecc8;
    border: 1px solid #fdecc8;
    border-radius: 10px;
+   font-size: large;
    font-family: 'Itim', cursive;
 }
 
-#surveyButton:hover, #backButton:hover {
+#surveyButton:hover, #backButton:hover, #inButton:hover, #upButton:hover, #outButton:hover {
    color: #9065b0;
    background-color: #e2ccee;
    border: 1px solid #e2ccee;
@@ -138,6 +147,6 @@ h1 {
 #greeting {
    padding: 20px;
    text-align: center;
-   color: #090b77;
+   color: #9065b0;
    font-family: 'Itim', cursive;
 }
