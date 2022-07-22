@@ -1,0 +1,152 @@
+body {
+   margin: 0;
+   padding: 10px;
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   flex-direction: column;
+   background: #c7d7fb;
+
+}
+
+h1 {
+   padding: 20px;
+   text-align: center;
+   color: #090b77;
+   background-color: #6e7cff;
+   border: 1px solid #6e7cff;
+   border-radius: 30px;
+   font-family: 'Chewy', cursive;
+   letter-spacing: 0.1em;
+}
+
+.course {
+   flex-grow: 1;
+   margin: 10px;
+   padding: 10px;
+   cursor: pointer;
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   color: #228676;
+   background-color: #96f0f0;
+   border: 1px solid #96f0f0;
+   border-radius: 10px;
+   font-family: 'Itim', cursive;
+}
+
+.course:hover, #submitButton:hover {
+   color: #770909;
+   background-color: #fbc7d4;
+   border: 1px solid #fbc7d4;
+}
+
+.canvasBox {
+   display: flex;
+   align-items: center;
+   justify-content: center;
+}
+
+#gradeCanvas {
+   width: 50%;
+   background-color: #96f0f0;
+   border: 1px solid #96f0f0;
+   border-radius: 10px;
+}
+
+#professorCanvas {
+   width: 50%;
+   background-color: #fbc7d4;
+   border: 1px solid #fbc7d4;
+   border-radius: 10px;
+}
+
+#surveyBox {
+   margin: 10px;
+}
+
+#mainBox {
+   margin: 10px;
+}
+
+#courseList {
+   display: flex;
+   flex-direction: column;
+}
+
+#course-item {
+   display: flex;
+   flex-wrap: wrap;
+}
+
+#signBox {
+   display: flex;
+}
+
+#inButton, #upButton, #outButton {
+   font-size: large;
+}
+
+#surveyButton, #inButton, #upButton, #outButton {
+   margin: 10px;
+   padding: 10px;
+   cursor: pointer;
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   color: #df7012;
+   background-color: #fdecc8;
+   border: 1px solid #fdecc8;
+   border-radius: 10px;
+   font-size: large;
+   font-family: 'Itim', cursive;
+}
+
+#surveyButton:hover, #backButton:hover, #inButton:hover, #upButton:hover, #outButton:hover {
+   color: #9065b0;
+   background-color: #e2ccee;
+   border: 1px solid #e2ccee;
+}
+
+#backpoint {
+   display: flex;
+   align-items: center;
+   justify-content: center;
+}
+
+#backButton {
+   flex-grow: 1;
+   margin: 10px;
+   padding: 10px;
+   cursor: pointer;
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   color: #df7012;
+   background-color: #fdecc8;
+   border: 1px solid #fdecc8;
+   border-radius: 10px;
+   font-family: 'Itim', cursive;
+}
+
+#submitButton {
+   flex-grow: 1;
+   margin: 10px;
+   padding: 10px;
+   cursor: pointer;
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   color: #228676;
+   background-color: #96f0f0;
+   border: 1px solid #96f0f0;
+   border-radius: 10px;
+   font-family: 'Itim', cursive;
+}
+
+#greeting {
+   padding: 20px;
+   text-align: center;
+   color: #9065b0;
+   font-family: 'Itim', cursive;
+}

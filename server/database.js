@@ -65,7 +65,7 @@ export class Database {
 
    async addUserTable() {
       const queryText = `
-         CREATE TABLE IF NOT EXISTS user (
+         CREATE TABLE IF NOT EXISTS userTable (
             username VARCHAR(30),
             password VARCHAR(30)
          );
@@ -76,7 +76,7 @@ export class Database {
    async writeUserData(username, password) {
       await this.addUserTable();
       const queryText = `
-         INSERT INTO user (username, password)
+         INSERT INTO userTable (username, password)
          VALUES ($1, $2)
          RETURNING *;
       `;
@@ -85,8 +85,9 @@ export class Database {
    }
 
    async readUser() {
+      await this.addUserTable();
       try {
-         const res = await this.client.query("SELECT * FROM user");
+         const res = await this.client.query("SELECT * FROM userTable");
          return res.rows;
       }
       catch (error) {

@@ -126,9 +126,9 @@ app.get(
 
 app.post("/", (request, response) => response.redirect("/"));
 
-app.get("/", (request, response) => { response.sendFile("client/index.html", { root: __dirname }) });
+app.get("/", (request, response) => response.sendFile("client/index.html", { root: __dirname }));
 
-app.get("/login", (request, response) => { response.sendFile("client/login.html", { root: __dirname }) });
+app.get("/login", (request, response) => response.sendFile("client/login.html", { root: __dirname }));
 
 app.post(
    "/login",

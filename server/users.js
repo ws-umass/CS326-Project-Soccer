@@ -9,6 +9,13 @@ class Users {
    }
 
    async init() {
+      try {
+         await this.database.connect();
+      }
+      catch (error) {
+         console.error(error);
+      }
+
       let userData = await this.database.readUser();
       this.user = userData;
    }
@@ -22,7 +29,8 @@ class Users {
    }
 
    addUser(name, pwd) {
-      if (this.findUser(name)) {
+      const badValue = [undefined, null, "", "none"];
+      if (this.findUser(name) || badValue.some((x) => x === name || x === pwd)) {
          return false;
       }
       this.user.push({ username: name, password: pwd });
