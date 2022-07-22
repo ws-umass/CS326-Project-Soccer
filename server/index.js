@@ -1,15 +1,30 @@
 import { Database } from "./database.js";
+import users from './users.js';
+import auth from './auth.js';
+
+import * as http from "http";
 import express from "express";
+import expressSession from 'express-session';
 import logger from "morgan";
+
 import "dotenv/config";
 
 const app = express();
 const port = process.env.PORT || 3000;
 
+const sessionConfig = {
+   secret: process.env.SECRET || "SECRET",
+   resave: false,
+   saveUninitialized: false
+}
+
+app.use(expressSession(sessionConfig));
 app.use(express.json());
-app.use(express.urlencoded({ extended: false }));
+app.use(express.urlencoded({ extended: true }));
 app.use(logger("dev"));
 app.use("/", express.static("client"));
+
+auth.configure(app);
 
 const headerFields = { "Content-Type": "application/json" };
 const badValue = [undefined, null, "", "none"];
@@ -21,6 +36,20 @@ try {
 }
 catch (error) {
    console.error(error);
+}
+
+/**
+ * @param {express.Request} request
+ * @param {express.Response} response
+ * @param {express.NextFunction} next 
+ */
+function checkLoggedIn(request, response, next) {
+   if (request.isAuthenticated()) {
+      next();
+   }
+   else {
+      response.redirect('/login');
+   }
 }
 
 /**
@@ -63,6 +92,7 @@ async function getEvaluation(response, course, semester, professor) {
    response.end();
 }
 
+// update
 app.post(
    "/setData",
    async (request, response) => {
@@ -71,6 +101,7 @@ app.post(
    }
 );
 
+// get
 app.get(
    "/avgGrade",
    async (request, response) => {
@@ -79,11 +110,20 @@ app.get(
    }
 );
 
+// get
 app.get(
    "/avgEvaluation",
    async (request, response) => {
       const options = request.query;
       await getEvaluation(response, options.course, options.semester, options.professor);
+   }
+);
+
+app.get(
+   "/",
+   checkLoggedIn,
+   (request, response) => {
+      response.send({ "status": "success" });
    }
 );
 
