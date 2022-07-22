@@ -60,4 +60,35 @@ export class Database {
       const res = await this.client.query(queryText, [semester, professor, evaluation, grade]);
       console.log(res.rows);
    }
+
+   async addUserTable() {
+      const queryText = `
+         CREATE TABLE IF NOT EXISTS user (
+            username VARCHAR(30),
+            password VARCHAR(30)
+         );
+      `;
+      await this.client.query(queryText);
+   }
+
+   async writeUserData(username, password) {
+      await this.addUserTable();
+      const queryText = `
+         INSERT INTO user (username, password)
+         VALUES ($1, $2)
+         RETURNING *;
+      `;
+      const res = await this.client.query(queryText, [username, password]);
+      console.log(res.rows);
+   }
+
+   async readUser() {
+      try {
+         const res = await this.client.query("SELECT * FROM user");
+         return res.rows;
+      }
+      catch (error) {
+         return [];
+      }
+   }
 }
