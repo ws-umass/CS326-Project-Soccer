@@ -134,3 +134,10 @@ h1 {
    border-radius: 10px;
    font-family: 'Itim', cursive;
 }
+
+#greeting {
+   padding: 20px;
+   text-align: center;
+   color: #090b77;
+   font-family: 'Itim', cursive;
+}

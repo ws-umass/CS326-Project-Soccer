@@ -1,10 +1,11 @@
 import { Database } from "./database.js";
-import users from './users.js';
-import auth from './auth.js';
+import { users } from "./users.js";
+
+import auth from "./auth.js";
 
 import * as http from "http";
 import express from "express";
-import expressSession from 'express-session';
+import expressSession from "express-session";
 import logger from "morgan";
 
 import "dotenv/config";
@@ -48,7 +49,7 @@ function checkLoggedIn(request, response, next) {
       next();
    }
    else {
-      response.redirect('/login');
+      response.redirect("/login");
    }
 }
 
